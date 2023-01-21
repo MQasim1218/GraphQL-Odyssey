@@ -8,7 +8,7 @@ module.exports = GQL_Types = gql`
     }
 
     type Track {
-        id: Int!
+        id: ID!
         title: String!
         author: Author!
         lengthInMins: Int,
