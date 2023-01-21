@@ -2,11 +2,29 @@
 const resolvers = {
 
     Query: {
-        TracksForHome: (parent, args, context, info) => { }
+        // ! Resolver Signature
+        // * feild: (parent, args, context, info) => { }
+
+        homepageTracks: (_, __, { dataSources }) => {
+            return dataSources.tracksApi.getTracksForHome()
+        },
+        spaceCats: (parent, args, { dataSources }) => {
+            return dataSources.spaceCatsApi.getSpaceCats()
+        }
     },
 
     Track: {
-        author: (parent, args, context, info) => { }
+        author: (track, _, { dataSources }) => {
+            console.log(track)
+            return dataSources.tracksApi.getAuthor(track.authorId)
+
+        }
+    },
+
+    SpaceCat: {
+        missions: (space_cat, __, { dataSources }) => {
+            return dataSources.spaceCatsApi.getMissions(space_cat.catId)
+        }
     }
 }
 

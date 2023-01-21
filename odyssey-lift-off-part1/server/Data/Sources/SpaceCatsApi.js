@@ -11,6 +11,6 @@ class SpaceCatsApi extends RESTDataSource {
     }
 
     getMissions(catId) {
-        return this.get(`spacecats/${catId}/missions`)
+        return this.get(`spacecats/${encodeURIComponent(catId)}/missions`)
     }
 }
