@@ -10,7 +10,7 @@ module.exports = GQL_Types = gql`
         id: ID!
         title: String!
         author: Author!
-        lengthInMins: Int,
+        length: Int,
         "URL to the file location!"
         thumbnail: String
         modulesCount: Int

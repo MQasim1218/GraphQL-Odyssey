@@ -28,9 +28,11 @@ const resolvers = require('./Data/Resolvers/Resolvers')
 const server = new ApolloServer({
     typeDefs: GQL_Types,
     // mocks: mocks 🍼 for mockdata!!
-    dataSources: {
-        tracksApi: new TracksApi(),
-        spaceCatsApi: new SpaceCatsApi()
+    dataSources: () => {
+        return {
+            tracksApi: new TracksApi(),
+            spaceCatsApi: new SpaceCatsApi()
+        }
     },
     resolvers: resolvers
 })

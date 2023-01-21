@@ -15,9 +15,8 @@ const resolvers = {
 
     Track: {
         author: (track, _, { dataSources }) => {
-            console.log(track)
-            return dataSources.tracksApi.getAuthor(track.authorId)
-
+            console.log(track.authorId)
+            return dataSources.tracksApi.getTrackAuthor(track.authorId)
         }
     },
 

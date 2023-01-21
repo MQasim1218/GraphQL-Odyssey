@@ -11,7 +11,7 @@ class TracksApi extends RESTDataSource {
     }
 
     getTrackAuthor(authorId) {
-        this.get(`author/${encodeURIComponent(authorId)}`)
+        return this.get(`author/${encodeURIComponent(authorId)}`)
     }
 }
 

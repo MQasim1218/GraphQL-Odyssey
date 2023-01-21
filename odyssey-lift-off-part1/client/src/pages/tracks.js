@@ -15,7 +15,7 @@ query GetHomePageTracks {
       name
       photo
     }
-    lengthInMins
+    length
     modulesCount
     thumbnail
   }
