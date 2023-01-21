@@ -1,7 +1,6 @@
 const { gql } = require('apollo-server')
 
 module.exports = GQL_Types = gql`
-
     type Query {
         homepageTracks: [Track!]!
         spaceCats: [SpaceCat]
