@@ -2,29 +2,37 @@
 
 const ApolloServer = require('apollo-server').ApolloServer
 const GQL_Types = require('./schema')
+const TracksApi = require('./Data/Sources/TracksApi')
+const SpaceCatsApi = require('./Data/Sources/SpaceCatsApi')
+const resolvers = require('./Data/Resolvers/Resolvers')
 
 // This impl of mocks returns realistic data based on our logic
-const mocks = {
-    Track: () => ({
-        id: () => "track_01",
-        title: () => "Astro Kitty, Space Explorer",
-        author: () => {
-            return {
-                name: "Grumpy Cat",
-                photo:
-                    "https://res.cloudinary.com/dety84pbu/image/upload/v1606816219/kitty-veyron-sm_mctf3c.jpg",
-            };
-        },
-        thumbnail: () =>
-            "https://res.cloudinary.com/dety84pbu/image/upload/v1598465568/nebula_cat_djkt9r.jpg",
-        lengthInMins: () => 1210,
-        modulesCount: () => 6,
-    }),
-};
+// const mocks = {
+//     Track: () => ({
+//         id: () => "track_01",
+//         title: () => "Astro Kitty, Space Explorer",
+//         author: () => {
+//             return {
+//                 name: "Grumpy Cat",
+//                 photo:
+//                     "https://res.cloudinary.com/dety84pbu/image/upload/v1606816219/kitty-veyron-sm_mctf3c.jpg",
+//             };
+//         },
+//         thumbnail: () =>
+//             "https://res.cloudinary.com/dety84pbu/image/upload/v1598465568/nebula_cat_djkt9r.jpg",
+//         lengthInMins: () => 1210,
+//         modulesCount: () => 6,
+//     }),
+// };
 
 const server = new ApolloServer({
     typeDefs: GQL_Types,
-    mocks: mocks
+    // mocks: mocks 🍼 for mockdata!!
+    dataSources: {
+        tracksApi: new TracksApi(),
+        spaceCatsApi: new SpaceCatsApi()
+    },
+    resolvers: resolvers
 })
 
 server.listen().then(() => {

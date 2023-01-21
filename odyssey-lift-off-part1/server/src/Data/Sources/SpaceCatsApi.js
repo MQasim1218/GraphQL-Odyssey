@@ -14,3 +14,5 @@ class SpaceCatsApi extends RESTDataSource {
         return this.get(`spacecats/${encodeURIComponent(catId)}/missions`)
     }
 }
+
+module.exports = SpaceCatsApi
