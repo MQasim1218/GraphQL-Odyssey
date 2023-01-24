@@ -13,6 +13,14 @@ class TracksApi extends RESTDataSource {
     getTrackAuthor(authorId) {
         return this.get(`author/${encodeURIComponent(authorId)}`)
     }
+
+    getSingleTrack(trackid) {
+        return this.get(`track/${encodeURIComponent(trackid)}`)
+    }
+
+    getTrackModule(trackid) {
+        return this.get(`track/${encodeURIComponent(trackid)}/modules`)
+    }
 }
 
 module.exports = TracksApi // 🥬  

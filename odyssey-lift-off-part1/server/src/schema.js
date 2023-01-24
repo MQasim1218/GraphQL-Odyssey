@@ -4,6 +4,9 @@ module.exports = GQL_Types = gql`
     type Query {
         homepageTracks: [Track!]!
         spaceCats: [SpaceCat]
+        track(id: ID!): Track
+        spacecat(id: ID!): SpaceCat
+        missions(to: String, scheduled: Boolean) : [Mission] 
     }
 
     type Track {
@@ -14,6 +17,9 @@ module.exports = GQL_Types = gql`
         "URL to the file location!"
         thumbnail: String
         modulesCount: Int
+        numOfViews: Int
+        description: String
+        modules: [Module!]!
     }
 
     type Author{
@@ -33,5 +39,11 @@ module.exports = GQL_Types = gql`
         id: ID!
         name: String!
         description: String!
+    }
+
+    type Module {
+        id: ID!
+        title: String
+        length: Int
     }
 `
