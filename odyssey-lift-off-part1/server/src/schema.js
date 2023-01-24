@@ -1,11 +1,11 @@
 const { gql } = require('apollo-server')
 
-module.exports = GQL_Types = gql`
+const GQL_Types = gql`
     type Query {
         homepageTracks: [Track!]!
         spaceCats: [SpaceCat]
         track(id: ID!): Track
-        spacecat(id: ID!): SpaceCat
+        spaceCat(id: ID!): SpaceCat
         missions(to: String, scheduled: Boolean) : [Mission] 
     }
 
@@ -47,3 +47,5 @@ module.exports = GQL_Types = gql`
         length: Int
     }
 `
+
+module.exports = GQL_Types

@@ -5,11 +5,11 @@ const resolvers = {
         // ! Resolver Signature
         // * feild: (parent, args, context, info) => { }
 
-        homepageTracks: (_, __, { dataSources }) => {
-            return dataSources.tracksApi.getTracksForHome()
+        homepageTracks: async (_, __, { dataSources }) => {
+            return await dataSources.tracksApi.getTracksForHome()
         },
-        spaceCats: (parent, args, { dataSources }) => {
-            return dataSources.spaceCatsApi.getSpaceCats()
+        spaceCats: async (parent, args, { dataSources }) => {
+            return await dataSources.spaceCatsApi.getSpaceCats()
         },
 
         // SECTION: Singles 
@@ -19,24 +19,25 @@ const resolvers = {
         spaceCat: (_, { id }, { dataSources }) => {
             return dataSources.spaceCatsApi.getSpaceCat(id)
         },
+    },
 
-        Track: {
-            author: (track, _, { dataSources }) => {
-                console.log(track.authorId)
-                return dataSources.tracksApi.getTrackAuthor(track.authorId)
-            },
-
-            modules: ({ modules }, _, { dataSources }) => {
-                return dataSources.tracksApi.getTrackModule()
-            }
+    Track: {
+        author: (track, _, { dataSources }) => {
+            console.log(track.authorId)
+            return dataSources.tracksApi.getTrackAuthor(track.authorId)
         },
 
-        SpaceCat: {
-            missions: (space_cat, __, { dataSources }) => {
-                return dataSources.spaceCatsApi.getMissions(space_cat.catId)
-            }
-        },
-    }
+        modules: async ({ id }, _, { dataSources }) => {
+            return await dataSources.tracksApi.getTrackModules(id)
+        }
+    },
+
+    SpaceCat: {
+        missions: async (space_cat, __, { dataSources }) => {
+            return dataSources.spaceCatsApi.getMissions(space_cat.catId)
+        }
+    },
+}
 
 
 module.exports = resolvers
