@@ -9,6 +9,12 @@ const GQL_Types = gql`
         missions(to: String, scheduled: Boolean) : [Mission] 
     }
 
+    type Mutation {
+        incrementTrackNumViews(id: ID!): IncrementNumViewsResponse
+    }
+
+    " NOTE: Below here are all mutation objects"
+
     type Track {
         id: ID!
         title: String!
@@ -17,7 +23,7 @@ const GQL_Types = gql`
         "URL to the file location!"
         thumbnail: String
         modulesCount: Int
-        numOfViews: Int
+        numberOfViews: Int
         description: String
         modules: [Module!]!
     }
@@ -46,6 +52,16 @@ const GQL_Types = gql`
         title: String
         length: Int
     }
+
+    " NOTE: Below here are all mutation objects"
+
+    type IncrementNumViewsResponse {
+        code: Int!
+        message: String!
+        success: Boolean!
+        track: Track 
+    }
+
 `
 
 module.exports = GQL_Types

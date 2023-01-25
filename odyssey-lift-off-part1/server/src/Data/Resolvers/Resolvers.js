@@ -21,6 +21,31 @@ const resolvers = {
         },
     },
 
+    Mutation: {
+        incrementTrackNumViews: async (_, { id }, { dataSources }) => {
+            try {
+                let track = await dataSources.tracksApi.incrementTrackNumViews(id)
+
+                // * Considering only a positive respone!
+                return {
+                    code: 200,
+                    message: 'All good to go',
+                    success: true,
+                    track
+                }
+            } catch (error) {
+                return {
+                    code: error.extensions.response.status,
+                    message: error.extensions.response.body,
+                    success: false,
+                    track: null
+                }
+            }
+
+
+        }
+    },
+
     Track: {
         author: (track, _, { dataSources }) => {
             console.log(track.authorId)
